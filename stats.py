@@ -16,3 +16,27 @@ def total_characters(file_contents):
             if words[i][k] in a_z:
                 a_z[words[i][k]] += 1
     return a_z
+
+def a_z_sorted(a_z):
+    sorted = []
+    for char in a_z:
+        sortedi = {"char" : char, "num" : a_z[char]}
+        sorted.append(sortedi)
+    sorted.sort(reverse=True, key=sort_on)
+    return sorted
+
+def sort_on(dic):
+    return dic["num"]
+
+def bookbot(book_location):
+    print("======== BOOKBOT ========")
+    print(f"Analyzing book found at {book_location}")
+    print("-------- Word Count --------")
+    print(f"Found {total_words(book_location)} total words")
+    print("----- Character Count -----")
+    a_z = total_characters(get_book_text(book_location))
+    final_sort = (a_z_sorted(a_z))
+    for i in final_sort:
+        print(f"{i["char"]}: {i["num"]}")
+    print("======== END ========")
+
